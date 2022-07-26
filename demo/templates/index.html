@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="zh">
+
+<head>
+    <title>测试数据生成器</title>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="/static/bootstrap/css/bootstrap.css">
+    <script src="/static/js/jquery-3.6.0.js"></script>
+    <script src="/static/bootstrap/js/bootstrap.js"></script>
+    <script src="/static/js/index.js"></script>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3">
+            <!-- 生产测试数据的表单 -->
+            <form class="mt-3" action="/api/test/text" method="post">
+                <div class="input-group">
+                    <input class="form-control" type="text" name="size" placeholder="长度" required>
+                    <button class="btn btn-outline-secondary" type="submit">生成文字</button>
+                </div>
+            </form>
+            <form class="mt-3" action="/api/test/emoji" method="post">
+                <div class="input-group">
+                    <input class="form-control" type="text" name="size" placeholder="长度" required>
+                    <button class="btn btn-outline-secondary" type="submit">生成表情</button>
+                </div>
+            </form>
+            <form class="mt-3" action="/api/test/timestamp" method="post">
+                <div class="input-group">
+                    <input class="form-control" type="text" name="date_time" placeholder="时间">
+                    <button class="btn btn-outline-secondary" type="submit">转时间戳</button>
+                </div>
+            </form>
+            <form class="mt-3" action="/api/test/file" method="post">
+                <div class="input-group">
+                    <input class="form-control" type="text" name="name" placeholder="名称" required>
+                    <input class="form-control" type="text" name="size" placeholder="大小" required>
+                    <button type="submit" class="btn btn-outline-secondary">
+                        生成文件
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div class="col-lg-9">
+            <!-- 测试数据列表 -->
+            <table class="table mt-2">
+                <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>类型</th>
+                    <th>参数</th>
+                    <th>内容</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for row in rows %}
+                <tr>
+                    <th>{{ row.id }}</th>
+                    <td>{{ row.type }}</td>
+                    <td>{{ row.arg }}</td>
+                    <td>{% if row.type != 'file' %}
+                        {{ row.data }}
+                        {% else %}
+                        <a target="_blank" href="/file/{{ row.id }}">下载</a>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<!-- 生产测试数据接口错误提示模态框 -->
+<div id="modal" class="modal fade">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">错误</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <p class="text-danger"></p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                    关闭
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+</html>
