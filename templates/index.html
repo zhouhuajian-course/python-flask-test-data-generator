@@ -1,16 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <title>测试数据生成器</title>
-    <link rel="stylesheet" href="/static/css/bootstrap.css">
+  <meta charset="UTF-8">
+  <title>测试数据生成器</title>
+  <link rel="stylesheet" href="/static/css/bootstrap.css">
 </head>
+
 <body>
-    <div class="container-fluid">
-        <div class="row">
-          <div class="col-3">左</div>
-          <div class="col-9">右</div>
-        </div>
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-3">
+        <form class="mt-3" action="">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="长度">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">生成文本</button>
+          </div>
+        </form>
+        <form class="mt-3" action="">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="长度">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">生成表情</button>
+          </div>
+        </form>
+        <form class="mt-3" action="">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="时间">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">转时间戳</button>
+          </div>
+        </form>
+        <form class="mt-3" action="">
+          <div class="input-group">
+            <input type="text" class="form-control" placeholder="名称">
+            <input type="text" class="form-control" placeholder="大小">
+            <button class="btn btn-outline-secondary" type="button" id="button-addon2">生成文件</button>
+          </div>
+        </form>
       </div>
+      <div class="col-9">
+        <table class="table mt-2">
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>类型</th>
+              <th>参数</th>
+              <th>内容</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th>2</th>
+              <td>file</td>
+              <td>abc.jpg 10M</td>
+              <td><a href="http://">下载</a></td>
+            </tr>
+            <tr>
+              <th>1</th>
+              <td>text</td>
+              <td>10</td>
+              <td>0123456789</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
 </body>
+
 </html>
