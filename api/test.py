@@ -8,6 +8,7 @@ from flask import Blueprint
 
 bp = Blueprint('bp', __name__)
 
+
 @bp.route('/api/test/text', methods=['POST'])
 def text():
     r = {"success": 1, "message": "生成成功", "data": ""}
