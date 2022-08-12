@@ -80,7 +80,7 @@ def timestamp():
                 raise ValueError("请输入正确的时间格式，格式为YYYY-mm-dd HH:MM:SS")
             struct_time = time.strptime(date_time, "%Y-%m-%d %H:%M:%S")
             data = time.mktime(struct_time)
-        data = int(data)  # 直接去掉小数 不是四舍五入
+        data = int(data)  # 去掉小数部分
         test_data = TestData(type="timestamp",
                              arg=date_time,
                              data=data)
