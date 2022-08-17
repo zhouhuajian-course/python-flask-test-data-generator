@@ -100,10 +100,12 @@ def file():
     try:
         name = request.form.get('name', default='').strip()
         size = request.form.get('size', default='').strip()  # 10B 10K 10M 10G 10M+1B 10G+1B
-        if not name or not size:
-            raise ValueError("请输入文件名和文件大小")
+        if not name:
+            raise ValueError("请输入文件名")
         if ' ' in name:
             raise ValueError("文件名不能有空格")
+        if not size:
+            raise ValueError("请输入文件大小")
         if not re.fullmatch('[1-9][0-9]*(B|K|M|G)(\+1B)?', size):
             raise ValueError("请输入正确的文件大小格式，例如1B、2K、3M、4G、5M+1B、6G+1B")
         test_data = TestData(type="file",

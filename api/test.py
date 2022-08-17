@@ -83,3 +83,31 @@ def timestamp():
         r['success'] = 0
         r['message'] = str(e)
     return r
+
+
+@bp.route('/api/test/file', methods=['POST'])
+def file():
+    """生成测试文件的接口"""
+    r = {"success": 1, "message": "生成成功", "data": ""}
+    try:
+        # 文件名、文件大小
+        name = request.form.get('name', '').strip()
+        size = request.form.get('size', '').strip()  # 10G 5M 120K 12B   10M 10M+1B
+        print("文件名" + name)
+        print("文件大小" + size)
+        # 检测文件名、文件大小
+        if not name:
+            raise ValueError("请输入文件名")
+        if ' ' in name:
+            # abc.jpg a bc.jpg
+            raise ValueError("文件名不能有空格")
+        if not size:
+            raise ValueError("请输入文件大小")
+        if not re.fullmatch(r'[1-9][0-9]*(G|M|K|B)(\+1B)?', size):
+            raise ValueError("请输入正确文件大小格式，例如10G 5M 120K 12B 10M+1B")
+        # TODO: 写入到数据库
+        # TODO: 创建文件的逻辑后续课程再讲
+    except Exception as e:
+        r['success'] = 0
+        r['message'] = str(e)
+    return r
