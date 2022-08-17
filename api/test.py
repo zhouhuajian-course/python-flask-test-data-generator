@@ -53,7 +53,6 @@ def emoji():
     return r
 
 
-
 @bp.route('/api/test/timestamp', methods=['POST'])
 def timestamp():
     """转时间戳接口"""
