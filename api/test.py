@@ -11,6 +11,8 @@ from flask import Blueprint, request
 import string
 import random
 
+from db.database import TestData, db
+
 bp = Blueprint('bp', __name__)
 
 CHARS = string.ascii_letters + string.digits + "零一二三四五六七八九"
@@ -27,7 +29,10 @@ def text():
         if size <= 0:
             raise ValueError("请输入正确的长度")
         data = ''.join(random.choices(CHARS, k=size))
-        # TODO: 写入到数据库
+        # 写入到数据库
+        test_data = TestData(type="text", arg=str(size), data=data)
+        db.session.add(test_data)
+        db.session.commit()
         r['data'] = data
     except Exception as e:
         r['success'] = 0
@@ -45,7 +50,10 @@ def emoji():
         if size <= 0:
             raise ValueError("请输入正确的长度")
         data = ''.join(random.choices(EMOJIS, k=size))
-        # TODO: 写入到数据库
+        # 写入到数据库
+        test_data = TestData(type="emoji", arg=str(size), data=data)
+        db.session.add(test_data)
+        db.session.commit()
         r['data'] = data
     except Exception as e:
         r['success'] = 0
@@ -76,7 +84,10 @@ def timestamp():
             data = time.mktime(struct_time)
         print(data)
         data = int(data)
-        # TODO: 写入到数据库
+        # 写入到数据库
+        test_data = TestData(type="timestamp", arg=date_time, data=data)
+        db.session.add(test_data)
+        db.session.commit()
         r['data'] = data
     except Exception as e:
         r['success'] = 0
@@ -104,7 +115,10 @@ def file():
             raise ValueError("请输入文件大小")
         if not re.fullmatch(r'[1-9][0-9]*(G|M|K|B)(\+1B)?', size):
             raise ValueError("请输入正确文件大小格式，例如10G 5M 120K 12B 10M+1B")
-        # TODO: 写入到数据库
+        # 写入到数据库
+        test_data = TestData(type="file", arg=f"{name} {size}", data="")
+        db.session.add(test_data)
+        db.session.commit()
         # TODO: 创建文件的逻辑后续课程再讲
     except Exception as e:
         r['success'] = 0

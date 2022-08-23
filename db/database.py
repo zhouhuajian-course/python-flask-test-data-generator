@@ -39,6 +39,9 @@ if __name__ == '__main__':
     db.app = app
     db.init_app(app)
     # 创建表 并且创建数据库
-    db.create_all()
+    # db.create_all()
+    test_data = TestData(type="text", arg="5", data="aaaaa")
+    db.session.add(test_data)
+    db.session.commit()
 
 
