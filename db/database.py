@@ -26,6 +26,10 @@ class TestData(db.Model):
     arg = db.Column(db.Text, nullable=False)
     data = db.Column(db.Text, nullable=False)
 
+    def __repr__(self):
+        """对象表示"""
+        return f"TestData(id={self.id}, type={self.type}, arg={self.arg})"
+
 
 if __name__ == '__main__':
     # 调试代码

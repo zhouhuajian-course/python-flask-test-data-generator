@@ -48,18 +48,27 @@
             </tr>
           </thead>
           <tbody>
+            {% for test_data in test_datas %}
             <tr>
-              <th>2</th>
-              <td>file</td>
-              <td>abc.jpg 10M</td>
-              <td><a href="http://">下载</a></td>
+              <th>{{ test_data.id }}</th>
+              <td>{{ test_data.type }}</td>
+              <td>{{ test_data.arg }}</td>
+              <td>
+                {% if test_data.type != 'file' %}
+                {{ test_data.data }}
+                {% else %}
+                <a href="http://">下载</a>
+                {% endif %}
+              </td>
             </tr>
-            <tr>
-              <th>1</th>
-              <td>text</td>
-              <td>10</td>
-              <td>0123456789</td>
-            </tr>
+            {% endfor %}
+
+<!--            <tr>-->
+<!--              <th>1</th>-->
+<!--              <td>text</td>-->
+<!--              <td>10</td>-->
+<!--              <td>0123456789</td>-->
+<!--            </tr>-->
           </tbody>
         </table>
       </div>
