@@ -11,29 +11,33 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col-3">
-        <form class="mt-3" action="">
+        <!-- 生成文本 -->
+        <form class="mt-3" action="/api/test/text" method="post">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="长度">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">生成文本</button>
+            <input type="text" class="form-control" placeholder="长度" name="size" required>
+            <button class="btn btn-outline-secondary" type="submit">生成文本</button>
           </div>
         </form>
-        <form class="mt-3" action="">
+        <!-- 生成表情 -->
+        <form class="mt-3" action="/api/test/emoji" method="post">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="长度">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">生成表情</button>
+            <input type="text" class="form-control" placeholder="长度" name="size" required>
+            <button class="btn btn-outline-secondary" type="submit">生成表情</button>
           </div>
         </form>
-        <form class="mt-3" action="">
+        <!-- 转时间戳 -->
+        <form class="mt-3" action="/api/test/timestamp" method="post">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="时间">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">转时间戳</button>
+            <input type="text" class="form-control" placeholder="时间" name="date_time">
+            <button class="btn btn-outline-secondary" type="submit">转时间戳</button>
           </div>
         </form>
-        <form class="mt-3" action="">
+        <!-- 生成文件 -->
+        <form class="mt-3" action="/api/test/file" method="post">
           <div class="input-group">
-            <input type="text" class="form-control" placeholder="名称">
-            <input type="text" class="form-control" placeholder="大小">
-            <button class="btn btn-outline-secondary" type="button" id="button-addon2">生成文件</button>
+            <input type="text" class="form-control" placeholder="名称" name="name" required>
+            <input type="text" class="form-control" placeholder="大小" name="size" required>
+            <button class="btn btn-outline-secondary" type="submit">生成文件</button>
           </div>
         </form>
       </div>
@@ -62,18 +66,33 @@
               </td>
             </tr>
             {% endfor %}
-
-<!--            <tr>-->
-<!--              <th>1</th>-->
-<!--              <td>text</td>-->
-<!--              <td>10</td>-->
-<!--              <td>0123456789</td>-->
-<!--            </tr>-->
           </tbody>
         </table>
       </div>
     </div>
   </div>
+<script src="/static/js/jquery-3.6.1.js"></script>
+<script>
+$(function() {
+  //在元素准备好后，会执行这些代码
+  $("form").on("submit", function(event) {
+    event.preventDefault();
+    var $form = $(this);
+    var url = $form.attr("action");
+    var data = $form.serialize();
+    //console.log(url);
+    //console.log(data);
+    $.post(url, data, function(result) {
+      //console.log(result);
+      if (result.success == 1) {
+        location.reload();
+      } else {
+        alert(result.message);
+      }
+    }, 'json');
+  });
+});  
+</script>
 </body>
 
 </html>
