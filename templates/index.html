@@ -71,28 +71,25 @@
       </div>
     </div>
   </div>
+  <div class="modal fade" tabindex="-1">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">错误</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <p class="text-danger"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">关闭</button>
+        </div>
+      </div>
+    </div>
+  </div>
 <script src="/static/js/jquery-3.6.1.js"></script>
-<script>
-$(function() {
-  //在元素准备好后，会执行这些代码
-  $("form").on("submit", function(event) {
-    event.preventDefault();
-    var $form = $(this);
-    var url = $form.attr("action");
-    var data = $form.serialize();
-    //console.log(url);
-    //console.log(data);
-    $.post(url, data, function(result) {
-      //console.log(result);
-      if (result.success == 1) {
-        location.reload();
-      } else {
-        alert(result.message);
-      }
-    }, 'json');
-  });
-});  
-</script>
+<script src="/static/js/bootstrap.js"></script>
+<script src="/static/js/index.js"></script>
 </body>
 
 </html>
