@@ -119,7 +119,6 @@ def file():
         test_data = TestData(type="file", arg=f"{name} {size}", data="")
         db.session.add(test_data)
         db.session.commit()
-        # TODO: 创建文件的逻辑后续课程再讲
     except Exception as e:
         r['success'] = 0
         r['message'] = str(e)

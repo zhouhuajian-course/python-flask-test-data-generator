@@ -61,7 +61,7 @@
                 {% if test_data.type != 'file' %}
                 {{ test_data.data }}
                 {% else %}
-                <a href="http://">下载</a>
+                <a href="/file/{{ test_data.id }}">下载</a>
                 {% endif %}
               </td>
             </tr>
