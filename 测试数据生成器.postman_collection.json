@@ -1,0 +1,232 @@
+{
+	"info": {
+		"_postman_id": "c1aafc55-0cf8-499b-99f0-2de69aeb56dd",
+		"name": "测试数据生成器",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "生成文本",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "size",
+							"value": "10",
+							"description": "生成长度为10的测试文本",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "300",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "-10",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "中文",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1/api/test/text",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"api",
+						"test",
+						"text"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "生成表情",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "size",
+							"value": "10",
+							"description": "生成长度为10的测试表情",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "300",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "-10",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "中文",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1/api/test/emoji",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"api",
+						"test",
+						"emoji"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "转时间戳",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "date_time",
+							"value": "2023-12-01 00:00:00",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "date_time",
+							"value": "",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "date_time",
+							"value": "2023-12-01 00:00",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "date_time",
+							"value": "2023-12-01 14:30:30",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1/api/test/timestamp",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"api",
+						"test",
+						"timestamp"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "生成文件",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "name",
+							"value": "",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "a bc.jpg",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "name",
+							"value": "abc.jpg",
+							"type": "default"
+						},
+						{
+							"key": "size",
+							"value": "",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "1024",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "10M",
+							"type": "default",
+							"disabled": true
+						},
+						{
+							"key": "size",
+							"value": "10M+1B",
+							"type": "default"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://127.0.0.1/api/test/file",
+					"protocol": "http",
+					"host": [
+						"127",
+						"0",
+						"0",
+						"1"
+					],
+					"path": [
+						"api",
+						"test",
+						"file"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
