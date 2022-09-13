@@ -4,9 +4,12 @@
 @author  : zhouhuajian
 @version : v1.0
 """
+import mimetypes
+import random
 import re
+from urllib.parse import quote
 
-from flask import Flask, render_template
+from flask import Flask, render_template, make_response
 from api.test import bp
 from db.database import db, TestData
 
@@ -29,6 +32,7 @@ def index():
 
 @app.route('/file/<int:id>')
 def file(id):
+    """文件下载接口"""
     # print(id)
     # 根据ID获取数据库里面的数据
     # 文件名、文件大小
@@ -40,8 +44,20 @@ def file(id):
     size_unit = match.group(2)
     size_add_one_byte = match.group(3) == "+1B"  # 10M+1B 10M
     print(size_number, size_unit, size_add_one_byte)
-    # 以后是返回文件内容
-    return ""
+    # 文件大小
+    # 10B -> 10 * 1024 ** 0
+    # 10K -> 10 * 1024 ** 1
+    # 10M -> 10 * 1024 ** 2
+    # 10G -> 10 * 1024 ** 3
+    real_size = int(size_number) * (1024 ** "BKMG".index(size_unit))
+    if size_add_one_byte:
+        real_size += 1
+    file_content = random.randbytes(real_size)
+    response = make_response(file_content)
+    response.headers.add_header("Content-Type", mimetypes.guess_type(name)[0])
+    response.headers.add_header("Content-Disposition", f"attachment; filename={quote(name)}")
+    return response
+    # return file_content
 
 if __name__ == '__main__':
     app.run(port=80, debug=True)
