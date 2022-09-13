@@ -4,7 +4,7 @@
 
 Python Flask 是轻量级、扩展性强的 Web 开发框架，
 
-本课程将使用 Flask + Flask-SQLAlchemy + SQLite + jQuery + Bootstrap，带大家一步一步地实现一个测试数据生成器项目。
+本课程使用 Flask + Flask-SQLAlchemy + SQLite + jQuery + Bootstrap，带大家一步一步地实现一个测试数据生成器项目。
 
 课程主要内容有：
 
