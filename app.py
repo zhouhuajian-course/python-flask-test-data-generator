@@ -22,23 +22,23 @@ app.config["SQLALCHEMY_ECHO"] = True
 db.app = app
 db.init_app(app)
 
+
 @app.route('/')
 def index():
+    """首页"""
     # 从数据库获取数据
     test_datas = TestData.query.order_by(TestData.id.desc()).limit(100).all()
-    # print(test_datas)
     return render_template('index.html', test_datas=test_datas)
 
 
 @app.route('/file/<int:id>')
 def file(id):
     """文件下载接口"""
-    # print(id)
-    # 根据ID获取数据库里面的数据
-    # 文件名、文件大小
+    # 根据数据ID，获取数据库里面的数据
     test_data = TestData.query.get(id)
+    # 文件名、文件大小
     name, size = tuple(test_data.arg.split())
-    # abc.png 10M+1B
+    # 使用正则匹配和正则捕获，获取文件大小信息
     match = re.fullmatch(r'([1-9][0-9]*)(G|M|K|B)(\+1B)?', size)
     size_number = match.group(1)
     size_unit = match.group(2)
@@ -57,7 +57,7 @@ def file(id):
     response.headers.add_header("Content-Type", mimetypes.guess_type(name)[0])
     response.headers.add_header("Content-Disposition", f"attachment; filename={quote(name)}")
     return response
-    # return file_content
+
 
 if __name__ == '__main__':
     app.run(port=80, debug=True)
